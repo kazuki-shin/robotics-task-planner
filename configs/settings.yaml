@@ -1,0 +1,64 @@
+# Application Settings
+app:
+  name: "Robotics Task Planner"
+  version: "1.0.0"
+  debug: false
+
+# OpenAI Configuration
+openai:
+  model: "gpt-4"
+  temperature: 0.7
+  max_tokens: 1000
+  retry_attempts: 3
+
+# Simulation Settings
+simulation:
+  gui: true
+  physics_timestep: 1/240
+  max_steps: 1000
+  workspace_bounds:
+    x: [-1, 1]
+    y: [-1, 1]
+    z: [0, 1.5]
+
+# Logging Configuration
+logging:
+  level: "INFO"
+  file: "logs/robotics.log"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+
+# Robot Parameters
+robot:
+  max_velocity: 1.0
+  max_acceleration: 0.5
+  gripper_force: 10.0
+
+# Task Planning Settings
+task_planning:
+  model: "gpt-4"
+  temperature: 0.2
+  max_tokens: 500
+  safety_settings:
+    block_harmful_content: true
+
+# Robot Settings
+robot:
+  urdf_path: "robot_arm.urdf"
+  initial_position: [0, 0, 0]
+  gripper:
+    max_force: 100
+    max_velocity: 0.1
+
+# Task Planning Settings
+task_planning:
+  model: "gpt-4"
+  temperature: 0.2
+  max_tokens: 500
+  safety_settings:
+    block_harmful_content: true
+
+# Logging Settings
+logging:
+  level: "INFO"
+  file: "logs/robotics.log"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s" 
