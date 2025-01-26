@@ -14,8 +14,8 @@ def initialize_session_state():
         st.session_state.env = RobotEnvironment(gui=False)
         st.session_state.env.add_camera(
             'main_view',
-            position=[2, 2, 2],
-            target=[0, 0, 0]
+            position=[2.0, 2.0, 2.0],
+            target=[0.0, 0.0, 0.0]
         )
     
     if 'task_planner' not in st.session_state:
@@ -24,7 +24,7 @@ def initialize_session_state():
     if 'code_generator' not in st.session_state:
         st.session_state.code_generator = RobotCodeGenerator()
     
-    # Initialize camera controls
+    # Initialize camera controls with explicit float values
     if 'camera_distance' not in st.session_state:
         st.session_state.camera_distance = 2.0
     if 'camera_yaw' not in st.session_state:
@@ -57,23 +57,38 @@ def render_simulation_view():
     cols = st.columns(3)
     
     with cols[0]:
+        # Ensure camera_distance is a float
+        current_distance = float(st.session_state.camera_distance)
         st.session_state.camera_distance = st.slider(
-            "Distance", 1.0, 5.0, 
-            st.session_state.camera_distance,
+            "Distance", 
+            min_value=1.0, 
+            max_value=5.0, 
+            value=current_distance,
+            step=0.1,
             key="cam_distance"
         )
     
     with cols[1]:
+        # Ensure camera_yaw is a float
+        current_yaw = float(st.session_state.camera_yaw)
         st.session_state.camera_yaw = st.slider(
-            "Yaw", -180.0, 180.0, 
-            st.session_state.camera_yaw,
+            "Yaw", 
+            min_value=-180.0, 
+            max_value=180.0, 
+            value=current_yaw,
+            step=1.0,
             key="cam_yaw"
         )
     
     with cols[2]:
+        # Ensure camera_pitch is a float
+        current_pitch = float(st.session_state.camera_pitch)
         st.session_state.camera_pitch = st.slider(
-            "Pitch", -89.0, 89.0, 
-            st.session_state.camera_pitch,
+            "Pitch", 
+            min_value=-89.0, 
+            max_value=89.0, 
+            value=current_pitch,
+            step=1.0,
             key="cam_pitch"
         )
     
@@ -114,24 +129,24 @@ def render_simulation_view():
     quick_view_cols = st.columns(4)
     
     if quick_view_cols[0].button("Top View"):
-        st.session_state.camera_yaw = 0
-        st.session_state.camera_pitch = 89
-        st.experimental_rerun()
+        st.session_state.camera_yaw = 0.0
+        st.session_state.camera_pitch = 89.0
+        st.rerun()
     
     if quick_view_cols[1].button("Front View"):
-        st.session_state.camera_yaw = 0
-        st.session_state.camera_pitch = 0
-        st.experimental_rerun()
+        st.session_state.camera_yaw = 0.0
+        st.session_state.camera_pitch = 0.0
+        st.rerun()
     
     if quick_view_cols[2].button("Side View"):
-        st.session_state.camera_yaw = 90
-        st.session_state.camera_pitch = 0
-        st.experimental_rerun()
+        st.session_state.camera_yaw = 90.0
+        st.session_state.camera_pitch = 0.0
+        st.rerun()
     
     if quick_view_cols[3].button("Isometric"):
-        st.session_state.camera_yaw = 45
-        st.session_state.camera_pitch = -35
-        st.experimental_rerun()
+        st.session_state.camera_yaw = 45.0
+        st.session_state.camera_pitch = -35.0
+        st.rerun()
 
 def main():
     setup_logging()

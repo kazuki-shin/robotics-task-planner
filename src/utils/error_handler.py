@@ -47,6 +47,9 @@ def error_handler(error_type: Type[Exception], logger: Optional[logging.Logger] 
         def wrapper(*args, **kwargs):
             try:
                 return func(*args, **kwargs)
+            except error_type:
+                # If it's already the correct error type, just re-raise it
+                raise
             except Exception as e:
                 log = logger or logging.getLogger(func.__module__)
                 log.error(f"Error in {func.__name__}: {str(e)}")

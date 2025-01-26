@@ -6,13 +6,13 @@ setup(
     packages=find_packages(),
     install_requires=[
         "numpy>=1.26.2",
-        "pybullet>=3.2.5",
+        "pytest>=7.4.3",
+        "streamlit>=1.28.0",
+        "langchain>=0.1.0",
+        "langchain-openai>=0.0.1",
         "openai>=1.3.0",
-        "python-dotenv>=1.0.0",
-        "streamlit>=1.29.0",
-        "tenacity>=8.2.3",
-        "pyyaml>=6.0.1",
-        "matplotlib>=3.8.2"
-    ],
-    python_requires=">=3.10",
+        "typing-extensions",
+        "python-dotenv",
+        "matplotlib>=3.8.0"
+    ]
 ) 

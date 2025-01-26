@@ -41,17 +41,16 @@ Note: Make sure your OpenAI account has:
 git clone https://github.com/YOUR_USERNAME/robotics-task-planner.git
 cd robotics-task-planner
 
-# Install Poetry if you haven't already
-curl -sSL https://install.python-poetry.org | python3 -
+# Create and activate conda environment
+conda create -n robotenv python=3.10
+conda activate robotenv
 
-# Install dependencies and create virtual environment
-poetry install
+# Install dependencies
+conda install -c conda-forge pybullet numpy=1.26.2 matplotlib
+pip install -r requirements.txt
 
-# Activate the virtual environment
-poetry shell
-
-# Run the application
-poetry run streamlit run src/ui/app.py
+# Install the package
+pip install -e .
 ```
 
 ## Project Structure
